@@ -15,6 +15,20 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
+
+   public function actionSaluda($get='esto lo recivimos en la url'){//creamos la acion saludar
+     $message1 = 'Hola mundo';
+     $message2 = 'como estas';
+     $numeros =[0,1,2,3,4];
+     return $this->render('saluda',[
+       'message1'=>$message1,
+       'message2'=>$message2,
+       'array'=>$numeros,
+       'param'=>$get
+     ]);
+     //retornamos una vista llamada saluda
+   }
+
     public function behaviors()
     {
         return [
