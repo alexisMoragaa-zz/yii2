@@ -4,9 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
 
+<style media="screen">
+  td{
+    border:none;
+
+  }
+</style>
 <h1>Lista de paises</h1>
 
-<ul>
+<!-- <ul>
     <?php foreach ($countries as $country): ?>
     <li>
         <?= $country->name, " ($country->code)"?>
@@ -15,7 +21,7 @@ use yii\widgets\LinkPager;
     <?php endforeach;?>
 </ul>
 
-<?=LinkPager::widget(['pagination' => $pagination])?>
+<?=LinkPager::widget(['pagination' => $pagination])?> -->
 
 <div class="container">
   <table class="table">
@@ -24,12 +30,8 @@ use yii\widgets\LinkPager;
       <th>Cod</th>
       <th>Poblacion</th>
     </thead>
-    <tbody>
-      <tr>
-        <td id="name"></td>
-        <td id="cod"></td>
-        <td id="population"></td>
-      </tr>
+    <tbody id="tbody">
+
     </tbody>
   </table>
 
@@ -42,14 +44,16 @@ use yii\widgets\LinkPager;
   crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-
+  $("#tbody").hide();
+  let limit =0
     $("#data").click(function(){
-      $.get('/index.php?r=country/ajax',function(data){
-        $.each(data, function(index,obj){
-          $("#name").text(obj.comuna);
-          $("#cod").text(obj.rutero);
-          $("#population").text(obj.h_lunes);
-        });
+      limit +=2
+      $.get('/index.php?r=country/ajax&limit='+limit,function(data){
+
+        document.getElementById("tbody").innerHTML= data
+
+        setTimeout(()=> $("#tbody").fadeIn(1000))
+
       });
     });
   </script>

@@ -29,10 +29,13 @@ class CountryController extends Controller
             'countries' => $countries,
             'pagination' => $pagination,
         ]);
-
     }
 
+
+
     public function actionAjax(){
+      $limit = $_GET['limit'];
+
       $query = Country::find();
 
       $pagination = new Pagination([//creamos un nuevo objeto de la clase paginacion
@@ -42,14 +45,21 @@ class CountryController extends Controller
 
       $countries = $query->orderBy('name')//asignamos a la variable countri el resultado de la consulta alojada en query
           // ordenada por nombre, y con la paginacion establecida
-          ->offset($pagination->offset)
-          ->limit($pagination->limit)
+          ->offset(0)
+          ->limit($limit)
           ->all();//retornamos todos los registros
 
-          // $response = Yii::app->response;
-          // $response->format = \yii\web\Response::FORMAT_JSON;
-          // $response->data = $countries;
-          return $this->render($countries);
+
+      $html="";//definimos una variable hrml para concatenar la consulta
+      foreach ($countries as $country ) {
+        $row = "<tr><td style='border: inset 0pt'>".$country->code."</td><td style='border: inset 0pt'>".$country->name."</td><td style='border: inset 0pt'>".$country->population."</td><tr>";
+        //creamos el codigo html por cada elemento de la query
+        $html .=$row;//concatenamos el codigo html en la variable html
+      }
+
+
+      return (substr($html,0) );//retornamos el html generado
+
     }
 
 
