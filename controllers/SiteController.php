@@ -9,12 +9,38 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\EntryForms;
 
 class SiteController extends Controller
 {
     /**
      * {@inheritdoc}
      */
+
+    public function actionEntry(){
+        $model = new EntryForms;
+        //creamos un nuevo objeto de tipo EntryForms
+
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
+            //validamos los datos  recibidos en el modelo
+
+            return $this->render('entry-confirm',['model'=>$model]);
+        }else{
+            //si la validacion del modelo no pasa
+            return $this->render('entry',['model'=>$model]);
+        }
+
+
+  /*Que sucede
+*la primera llamada a la accion entry nos retorna el else, ya que no incluye datos enviados por post
+   * al estar vacia no puede cargar los datos y nos retorna el else, el cual nos muestra el formulario
+   * cuando ingresamos los datos al formulario, y lo enviamos este logra cargar los datos objetinos del request
+   * en el objeto form y este es enviado a validar, si pasa las validaciones nos retotna una vista llamada entry-confirm
+   * la cual esta acompañada del modelo, del cual mas adelante tomamos los datos
+
+   *    */
+
+    }
 
    public function actionSaluda($get='esto lo recivimos en la url'){//creamos la acion saludar
      $message1 = 'Hola mundo';
@@ -27,6 +53,11 @@ class SiteController extends Controller
        'param'=>$get
      ]);
      //retornamos una vista llamada saluda
+   }
+
+   public function actionFormulario(){
+
+     return $this->render('formulario');
    }
 
     public function behaviors()
