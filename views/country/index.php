@@ -6,23 +6,11 @@ use yii\widgets\LinkPager;
 
 <style media="screen">
   td{
-    border:none;
+    border: inset 0pt;
 
   }
 </style>
 <h1>Lista de paises</h1>
-
-<!-- <ul>
-    <?php foreach ($countries as $country): ?>
-    <li>
-        <?= $country->name, " ($country->code)"?>
-        <?= $country->population?>
-    </li>
-    <?php endforeach;?>
-</ul>
-
-<?=LinkPager::widget(['pagination' => $pagination])?> -->
-
 <div class="container">
   <table class="table">
     <thead>
@@ -30,12 +18,19 @@ use yii\widgets\LinkPager;
       <th>Cod</th>
       <th>Poblacion</th>
     </thead>
-    <tbody id="tbody">
 
-    </tbody>
+    <tbody id="tbody">
+    <?php foreach ($countries as $country): ?>
+      <tr>
+        <td style='border: inset 0pt'><?= $country->code?></td>
+        <td style='border: inset 0pt'><?= $country->name?></td>
+        <td style='border: inset 0pt'><?= $country->population?></td>
+      </tr>
+    <?php endforeach;?>
+  </tbody>
   </table>
 
-  <button type="button" name="button" class="btn btn-primary" id="data">Cargar Data</button>
+  <button type="button" name="button" class="btn btn-primary" id="data">Cargar Mas</button>
 </div>
 
 <script
@@ -44,8 +39,8 @@ use yii\widgets\LinkPager;
   crossorigin="anonymous"></script>
 
   <script type="text/javascript">
-  $("#tbody").hide();
-  let limit =0
+
+  let limit =2
     $("#data").click(function(){
       limit +=2
       $.get('/index.php?r=country/ajax&limit='+limit,function(data){

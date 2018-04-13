@@ -14,7 +14,7 @@ class CountryController extends Controller
         //countri find esta referenciando al nombre de la tabla? / nos trae todos los registros de la tabla
 
         $pagination = new Pagination([//creamos un nuevo objeto de la clase paginacion
-            'defaultPageSize' => 5,//establecemos el limite de registros por paginas
+            'defaultPageSize' => 2,//establecemos el limite de registros por paginas
             'totalCount' => $query->count(),//añadimos el total de registros obtenidos por la consulta
         ]);
 

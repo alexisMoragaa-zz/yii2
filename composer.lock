@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bc7a8cdcef199b8ae2c984c1e3e94b51",
+    "content-hash": "9264f6a180f55ed3563da989962d6a6e",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -213,6 +213,69 @@
                 "html"
             ],
             "time": "2018-02-23T01:58:20+00:00"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "d3373c97e1bd4fceb0687d2e289998bccda514f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/d3373c97e1bd4fceb0687d2e289998bccda514f1",
+                "reference": "d3373c97e1bd4fceb0687d2e289998bccda514f1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": "^5.2|^7.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Erik Tilt"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://rootslabs.net"
+                },
+                {
+                    "name": "Mark Baker",
+                    "homepage": "http://markbakeruk.net"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "https://github.com/PHPOffice/PHPExcel",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "abandoned": "phpoffice/phpspreadsheet",
+            "time": "2016-09-29T20:13:14+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -964,12 +1027,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "773750151c47189c24f9026620e43ddd55d453a2"
+                "reference": "6858c3f0e94b96c114c28f9185f295bf30a53e58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/773750151c47189c24f9026620e43ddd55d453a2",
-                "reference": "773750151c47189c24f9026620e43ddd55d453a2",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/6858c3f0e94b96c114c28f9185f295bf30a53e58",
+                "reference": "6858c3f0e94b96c114c28f9185f295bf30a53e58",
                 "shasum": ""
             },
             "require": {
@@ -1021,7 +1084,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-03-29T00:18:34+00:00"
+            "time": "2018-04-11T19:14:35+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1428,12 +1491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "17f97a68562e514a3b5df9b12a408e19f07e3990"
+                "reference": "a23ddc74c1c1c896ad2aa740d0c4183203a34d07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/17f97a68562e514a3b5df9b12a408e19f07e3990",
-                "reference": "17f97a68562e514a3b5df9b12a408e19f07e3990",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a23ddc74c1c1c896ad2aa740d0c4183203a34d07",
+                "reference": "a23ddc74c1c1c896ad2aa740d0c4183203a34d07",
                 "shasum": ""
             },
             "require": {
@@ -1483,7 +1546,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-07T12:09:09+00:00"
+            "time": "2018-04-12T05:33:32+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1757,12 +1820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "df2956d8ef8afd94a1d06b7ad69e90deacdeb9b8"
+                "reference": "70c740bde8fd9ea9ea295be1cd875dd7b267e157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/df2956d8ef8afd94a1d06b7ad69e90deacdeb9b8",
-                "reference": "df2956d8ef8afd94a1d06b7ad69e90deacdeb9b8",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/70c740bde8fd9ea9ea295be1cd875dd7b267e157",
+                "reference": "70c740bde8fd9ea9ea295be1cd875dd7b267e157",
                 "shasum": ""
             },
             "require": {
@@ -1805,7 +1868,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2018-04-07T09:03:14+00:00"
+            "time": "2018-04-11T04:50:36+00:00"
         },
         {
             "name": "psr/http-message",
@@ -2979,12 +3042,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "ad32bff2411d798c5d58c687bd8815c64f4ab9bf"
+                "reference": "15526e95239fcd53316866f9f32cd5daf3a087e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/ad32bff2411d798c5d58c687bd8815c64f4ab9bf",
-                "reference": "ad32bff2411d798c5d58c687bd8815c64f4ab9bf",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/15526e95239fcd53316866f9f32cd5daf3a087e5",
+                "reference": "15526e95239fcd53316866f9f32cd5daf3a087e5",
                 "shasum": ""
             },
             "require": {
@@ -3018,7 +3081,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2018-04-04T16:40:28+00:00"
+            "time": "2018-04-12T21:42:03+00:00"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -3073,12 +3136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "563fde754533b67ff04f934d7a236c76decb0305"
+                "reference": "21436e931e99f8a00c8f286f11e71a0e12441d49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/563fde754533b67ff04f934d7a236c76decb0305",
-                "reference": "563fde754533b67ff04f934d7a236c76decb0305",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/21436e931e99f8a00c8f286f11e71a0e12441d49",
+                "reference": "21436e931e99f8a00c8f286f11e71a0e12441d49",
                 "shasum": ""
             },
             "require": {
@@ -3118,12 +3181,14 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2018-04-04T12:06:01+00:00"
+            "time": "2018-04-12T21:51:36+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "phpoffice/phpexcel": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
