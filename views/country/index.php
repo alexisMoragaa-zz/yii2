@@ -4,13 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
 
-<style media="screen">
-  td{
-    border: inset 0pt;
-
-  }
-</style>
-<h1>Lista de paises</h1>
+<h1 class="text-center text-muted">Lista de paises</h1>
 <div class="container">
   <table class="table">
     <thead>
@@ -30,7 +24,7 @@ use yii\widgets\LinkPager;
   </tbody>
   </table>
 
-  <button type="button" name="button" class="btn btn-primary" id="data">Cargar Mas</button>
+  <button type="button" name="button" class="btn btn-primary " id="data">Cargar Mas</button>
 </div>
 
 <script
