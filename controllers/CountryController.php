@@ -54,7 +54,7 @@ class CountryController extends Controller
       foreach ($countries as $country ) {
         $row = "<tr><td style='border: inset 0pt'>".$country->code."</td><td style='border: inset 0pt'>".$country->name."</td><td style='border: inset 0pt'>".$country->population."</td><tr>";
         //creamos el codigo html por cada elemento de la query
-        $html .=$row;//concatenamos el codigo html en la variable html
+        $html .= $row;//concatenamos el codigo html en la variable html
       }
 
 

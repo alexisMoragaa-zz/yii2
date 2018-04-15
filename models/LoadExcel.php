@@ -14,22 +14,22 @@ Class LoadExcel extends model{
     return[
           [['excelFile'],'file', 'skipOnEmpty' => false, 'extensions' => 'xls, xlsx'],
     ];
-    return [
-          [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
-      ];
-  }
+
+  }//fin rules
 
   public function upload(){
     if($this->validate()){
+      //preguntamos si el archivo pasa las validaciones del modelo
       $this->excelFile->saveAs('uploads/' . $this->excelFile->baseName . '.' . $this->excelFile->extension);
-
-
-      return true;
+//si cumple con las validaciones del modelo lo guardamos en la carpeta uploads con el nombre que traia el archivo
+      return true;//retornamos true si las validaciones pasan
     }else{
-      return false;
+      return false;//retornamos false si las validaciones no pasan retornamos false en la validacion
     }
-  }
-}
+  }//fin uopload
+
+}//fin modelo
+
 
 
  ?>

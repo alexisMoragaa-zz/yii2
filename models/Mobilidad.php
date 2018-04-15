@@ -33,8 +33,8 @@ class Mobilidad extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'nombre', 'obra', 'telefono', 'evaluacion', 'cargo', 'email', 'disponibilidad', 'recomendacion'], 'required'],
-            [['id', 'nombre', 'obra', 'telefono', 'evaluacion'], 'integer'],
+            [['id', 'nombre', 'obra', 'telefono', 'cargo', 'email'], 'required'],
+            [['id', 'telefono'], 'integer'],
             [['cargo', 'email', 'disponibilidad'], 'string', 'max' => 200],
             [['recomendacion'], 'string', 'max' => 500],
             [['id'], 'unique'],
