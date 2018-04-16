@@ -28,63 +28,56 @@ class MobilidadController extends \yii\web\Controller
 
 
 
-        public function actionAjax(){
-          $limit = $_GET['limit'];
+    public function actionAjax(){
+      $limit = $_GET['limit'];
 
-          $query = Mobilidad::find();
+      $query = Mobilidad::find();
 
-          // $pagination = new Pagination([//creamos un nuevo objeto de la clase paginacion
-          //     'defaultPageSize' => 5,//establecemos el limite de registros por paginas
-          //     'totalCount' => $query->count(),//añadimos el total de registros obtenidos por la consulta
-          // ]);
-
-          $mob = $query->orderBy('id')//asignamos a la variable countri el resultado de la consulta alojada en query
-              // ordenada por nombre, y con la paginacion establecida
-              ->offset(0)
-              ->limit($limit)
-              ->all();//retornamos todos los registros
+      $mob = $query->orderBy('id')//asignamos a la variable countri el resultado de la consulta alojada en query
+          // ordenada por nombre, y con la paginacion establecida
+          ->offset(0)
+          ->limit($limit)
+          ->all();//retornamos todos los registros
 
 
-          $html="";//definimos una variable hrml para concatenar la consulta
-          foreach ($mob as $m ) {
-            if($m->evaluacion == 5){
-              $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png'  class='star'></td><td style='border: inset 0pt'> ";
-            }elseif($m->evaluacion == 4){
-              $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
+      $html="";//definimos una variable hrml para concatenar la consulta
+      foreach ($mob as $m ) {
+        if($m->evaluacion == 5){//usamos un conjunto de if animados para asignar la cantidad de estrellas correspondientes
+          $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png'  class='star'></td><td style='border: inset 0pt'> ";
+        }elseif($m->evaluacion == 4){
+          $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
 
-            }elseif($m->evaluacion == 3){
-              $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
+        }elseif($m->evaluacion == 3){
+          $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
 
-            }elseif($m->evaluacion == 2){
-              $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
+        }elseif($m->evaluacion == 2){
+          $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
 
-            }elseif($m->evaluacion == 1){
-              $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
+        }elseif($m->evaluacion == 1){
+          $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
 
-            }else{
-              $e ="<img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
-
-            }
-            $row = "<tr><td style='border: inset 0pt'>"
-              .$m->obra."</td><td style='border: inset 0pt'>"
-              .$m->cargo."</td><td style='border: inset 0pt'>"
-              .$m->nombre."</td><td style='border: inset 0pt'>"
-
-              .$e
-
-              // .""
-
-              .$m->disponibilidad."</td><td style='border: inset 0pt'>"
-              .$m->recomendacion."</td><td style='border: inset 0pt'>"
-              ." <button class='btn btn-info'> Contactar </button></td><td>";
-            //creamos el codigo html por cada elemento de la query
-            $html .= $row;//concatenamos el codigo html en la variable html
-          }
-
-
-          return (substr($html,0) );//retornamos el html generado
+        }else{
+          $e ="<img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png' class='starfalse'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
 
         }
+        $row = "<tr><td style='border: inset 0pt'>"
+          .$m->obra."</td><td style='border: inset 0pt'>"
+          .$m->cargo."</td><td style='border: inset 0pt'>"
+          .$m->nombre."</td><td style='border: inset 0pt'>"
+          .$e
+          .$m->disponibilidad."</td><td style='border: inset 0pt'>"
+          .$m->recomendacion."</td><td style='border: inset 0pt'>"
+          ." <button class='btn btn-info'> Contactar </button></td><td>";
+          //creamos el codigo html por cada elemento de la query
+          $html .= $row;//concatenamos el codigo html en la variable html
+        }
+
+        return (substr($html,0) );//retornamos el html generado
+
+      }
+
+
+
 
     public function actionGuardarExcel(){
       //esta funcion guarda un archivo excel para posteriormenete ser ingresado en la base de datos

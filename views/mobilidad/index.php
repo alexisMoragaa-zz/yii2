@@ -48,7 +48,7 @@ td{
 
 }
 .bg{
-  background-color: #70D7D4;
+  background-color: #C2C4C4;
   color: white;
   font-weight:bold;
 }
@@ -78,7 +78,7 @@ td{
 
     <ul class="nav nav-tabs nav-justified text-center">
       <li class="active"><a data-toggle="tab" href="#disponible" class="bg">Colaboradores Disponibles</a></li>
-      <li class=""><a data-toggle="tab" href="#busco">Busco Colaboradores</a></li>
+      <li class=""><a data-toggle="tab" href="#busco" class="bg">Busco Colaboradores</a></li>
     </ul>
 
 
@@ -121,7 +121,8 @@ td{
           <?php endforeach ?>
         </tbody>
       </table>
-      <button type="button" name="button" id="data">Cargar Mas</button>
+      <!-- <button type="button" name="button" id="data">Cargar Mas</button> -->
+      <a href="#" class="" id="data">Cargar mas <span>+</span></a>
     </div>
 
     <div class="col-md-12 tab-pane fade fondo" id="busco">
@@ -145,7 +146,8 @@ td{
 <script type="text/javascript">
 
 let limit =5
-  $("#data").click(function(){
+  $("#data").click(function(e){
+    e.preventDefault();
     limit +=5
     $.get('/index.php?r=mobilidad/ajax&limit='+limit,function(data){
 
