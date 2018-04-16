@@ -20,8 +20,6 @@ class MobilidadController extends \yii\web\Controller
           ->limit(5)
           ->all();
 
-
-
         return $this->render('index',['data'=>$data]);
         //retornamos la vista index de este contrlador
     }
@@ -42,7 +40,7 @@ class MobilidadController extends \yii\web\Controller
 
       $html="";//definimos una variable hrml para concatenar la consulta
       foreach ($mob as $m ) {
-        if($m->evaluacion == 5){//usamos un conjunto de if animados para asignar la cantidad de estrellas correspondientes
+        if($m->evaluacion == 5){//usamos un conjunto de if animados para asignar la cantidad de estrellas correspondiente
           $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png'  class='star'></td><td style='border: inset 0pt'> ";
         }elseif($m->evaluacion == 4){
           $e ="<img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/startrue.png' class='star'><img src='/icons/starfalse.png'  class='starfalse'></td><td style='border: inset 0pt'> ";
@@ -134,11 +132,12 @@ class MobilidadController extends \yii\web\Controller
             $mobilidad = new Mobilidad();//creamos una nueva instancia del modelo mobilidad para guardar los datos
 
             $mobilidad->id = $rowData[0][0];
+            // die($rowData[0][0]." ".$rowData[0][1]." ".$rowData[0][2]." ".$rowData[0][3]." ".$rowData[0][4]." ".$rowData[0][5]);
             $mobilidad->nombre = $rowData[0][1];
             $mobilidad->obra = $rowData[0][2];
             $mobilidad->telefono = $rowData[0][3];
-            $mobilidad->cargo = $rowData[0][5];
-            $mobilidad->email = $rowData[0][6];
+            $mobilidad->cargo = $rowData[0][4];
+            $mobilidad->email = $rowData[0][5];
 
             $mobilidad->save();  //guardamos los registros en el modelo y bd
             Yii::$app->session->setFlash('success',' Nomina Insertada Con Exito');

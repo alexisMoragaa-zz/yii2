@@ -8,14 +8,15 @@ use Yii;
  * This is the model class for table "mobilidad".
  *
  * @property int $id
- * @property int $nombre
- * @property int $obra
+ * @property string $nombre
+ * @property string $obra
  * @property int $telefono
  * @property int $evaluacion
  * @property string $cargo
  * @property string $email
  * @property string $disponibilidad
  * @property string $recomendacion
+ * @property int $Estado
  */
 class Mobilidad extends \yii\db\ActiveRecord
 {
@@ -34,8 +35,8 @@ class Mobilidad extends \yii\db\ActiveRecord
     {
         return [
             [['id', 'nombre', 'obra', 'telefono', 'cargo', 'email'], 'required'],
-            [['id', 'telefono'], 'integer'],
-            [['cargo', 'email', 'disponibilidad'], 'string', 'max' => 200],
+            [['id', 'telefono', 'evaluacion', 'Estado'], 'integer'],
+            [['nombre', 'obra', 'cargo', 'email', 'disponibilidad'], 'string', 'max' => 200],
             [['recomendacion'], 'string', 'max' => 500],
             [['id'], 'unique'],
         ];
@@ -56,6 +57,7 @@ class Mobilidad extends \yii\db\ActiveRecord
             'email' => 'Email',
             'disponibilidad' => 'Disponibilidad',
             'recomendacion' => 'Recomendacion',
+            'Estado' => 'Estado',
         ];
     }
 }
