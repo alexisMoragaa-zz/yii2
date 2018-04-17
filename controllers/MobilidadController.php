@@ -74,7 +74,20 @@ class MobilidadController extends \yii\web\Controller
 
       }
 
+public function actionAutocompleteAjax(){
+  $term = $_POST['search'];//capturamos el parametro
+   $response = array();//creamos un array basio
 
+   $data = Mobilidad::find()
+    ->andFilterWhere(['like', 'nombre',$term])
+    ->all();//creamos una query que busca por like el termino que le enviamos desde la vista
+
+    foreach ($data as $d ) {//recorremos el resultado de la query
+      $response[] = array("obra"=>$d->obra,"label"=>$d->nombre,"telefono"=>$d->telefono,"cargo"=>$d->cargo,"email"=>$d->email);//creamos un array asociativo con el resultado de la query
+    }
+    return(json_encode($response));//retornamos el aray asociativo e formato json a la vista
+
+  }
 
 
     public function actionGuardarExcel(){

@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css">
 <style>
 .star{
   height: 14px;
@@ -91,6 +91,9 @@ hr {
 .mt-2{
   margin-top: 1.5em;
 }
+ul.ui-autocomplete {
+    z-index: 1100;
+}
 
 </style>
 
@@ -115,7 +118,7 @@ hr {
     <div class="col-12 banner fondo">
       Este es el banner
     </div>
-
+<!-- <input type="text" name="" value="" id="autocomplete" class="form-control"> -->
     <ul class="nav nav-tabs nav-justified text-center">
       <li class="active"><a data-toggle="tab" href="#disponible" class="bg">Colaboradores Disponibles</a></li>
       <li class=""><a data-toggle="tab" href="#busco" class="bg">Busco Colaboradores</a></li>
@@ -245,7 +248,8 @@ hr {
                   <label for="" class="control-label">Nombre</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="searchName">
+                  <div id="suggestions"></div>
                 </div>
               </div>
 
@@ -255,7 +259,7 @@ hr {
                   <label for="" class="control-label">Cargo</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="cargo">
                 </div>
               </div>
 
@@ -264,7 +268,7 @@ hr {
                   <label for="" class="control-label">Obra</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="obra">
                 </div>
               </div>
 
@@ -273,7 +277,7 @@ hr {
                   <label for="" class="control-label">Email</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="email">
                 </div>
               </div>
 
@@ -282,7 +286,7 @@ hr {
                   <label for="" class="control-label">Telefono</label>
                 </div>
                 <div class="col-sm-12 col-md-9">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" id="telefono">
                 </div>
               </div>
 
@@ -314,7 +318,7 @@ hr {
                   <textarea name="name" rows="4" class="form-control"></textarea>
                 </div>
               </div>
-
+<button type="button" name="button" id="send" class="btn btn-success">Enviar</button>
             </div>
             </div>
           </div>
@@ -329,119 +333,78 @@ hr {
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
 <script type="text/javascript">
 
-let limit =5
-  $("#data").click(function(e){
-    e.preventDefault();
-    limit +=5
+
+let limit =5//establecemos una variable limit en ya que en la tabla mostramos los primeros 5 registros
+  $("#data").click(function(e){//ejecutamos la funcion con el evento click sobre #data
+    e.preventDefault();//desasctivamos el comportamiento por default del elemento
+    limit +=5//cada vez que se desencadene el evento sumamos 5 al limite y traemos 5 resultados mas
     $.get('/index.php?r=mobilidad/ajax&limit='+limit,function(data){
-
+//lanzamos una peticion get a la ruta la cual nos retorna un string con el codigo html
       document.getElementById("tbody").innerHTML= data
+//seleccionamos el body de la tabla he insertamos la data con el codigo html que traemos desde la peticon ajax
+    }); //fin peticion ajax
+  });// fin evento click
 
-      setTimeout(()=> $("#tbody").fadeIn(1000))
 
-    });
-  });
-  var star1 = document.getElementById("star1");
-  var star2 = document.getElementById("star2");
-  var star3 = document.getElementById("star3");
-  var star4 = document.getElementById("star4");
-  var star5 = document.getElementById("star5");
-  var clear = document.getElementById("clear");
 
-/*  // star1.addEventListener("mouseover",()=>{
-  //   star1.src='/icons/startrue.png'
-  //   star1.className='starv'
-  // });
-  // star1.addEventListener("mouseout",()=>{
-  //   star1.src='/icons/starfalse.png'
-  //   star1.className='starfalsev'
+  // creamos una funcion para autocompletar los campos
+  // $("#searchName").autocomplete({
+  //   source: '/index.php?r=mobilidad/autocomplete-ajax',
+  //   minLenght:3,
+  //   select : function(event, ui){
+  //     $("#searchName").val(ui.item.value);
+  //     $("#obra").val(ui.item.id);
   //
-  //   // console.log("pasaste por la estrella numero 1");
+  //   }
   // });
-  //
-  // star2.addEventListener("mouseover",()=>{
-  //   star1.src='/icons/startrue.png'
-  //   star1.className='starv'
-  //   star2.src='/icons/startrue.png'
-  //   star2.className='starv'
-  // });
-  // star2.addEventListener("mouseout",()=>{
-  //   star1.src='/icons/starfalse.png'
-  //   star1.className='starfalsev'
-  //   star2.src='/icons/starfalse.png'
-  //   star2.className='starfalsev'
-  //   // console.log("pasaste por la estrella numero 1");
-  // });
-  //
-  // star3.addEventListener("mouseover",()=>{
-  //   star1.src='/icons/startrue.png'
-  //   star1.className='starv'
-  //   star2.src='/icons/startrue.png'
-  //   star2.className='starv'
-  //   star3.src='/icons/startrue.png'
-  //   star3.className='starv'
-  // });
-  // star3.addEventListener("mouseout",()=>{
-  //   star1.src='/icons/starfalse.png'
-  //   star1.className='starfalsev'
-  //   star2.src='/icons/starfalse.png'
-  //   star2.className='starfalsev'
-  //   star3.src='/icons/starfalse.png'
-  //   star3.className='starfalsev'
-  //   // console.log("pasaste por la estrella numero 1");
-  // });
-  //
-  // star4.addEventListener("mouseover",()=>{
-  //   star1.src='/icons/startrue.png'
-  //   star1.className='starv'
-  //   star2.src='/icons/startrue.png'
-  //   star2.className='starv'
-  //   star3.src='/icons/startrue.png'
-  //   star3.className='starv'
-  //   star4.src='/icons/startrue.png'
-  //   star4.className='starv'
-  // });
-  // star4.addEventListener("mouseout",()=>{
-  //   star1.src='/icons/starfalse.png'
-  //   star1.className='starfalsev'
-  //   star2.src='/icons/starfalse.png'
-  //   star2.className='starfalsev'
-  //   star3.src='/icons/starfalse.png'
-  //   star3.className='starfalsev'
-  //   star4.src='/icons/starfalse.png'
-  //   star4.className='starfalsev'
-  //   // console.log("pasaste por la estrella numero 1");
-  // });
-  //
-  // star5.addEventListener("mouseover",()=>{
-  //   star1.src='/icons/startrue.png'
-  //   star1.className='starv'
-  //   star2.src='/icons/startrue.png'
-  //   star2.className='starv'
-  //   star3.src='/icons/startrue.png'
-  //   star3.className='starv'
-  //   star4.src='/icons/startrue.png'
-  //   star4.className='starv'
-  //   star5.src='/icons/startrue.png'
-  //   star5.className='starv'
-  // });
-  // star5.addEventListener("mouseout",()=>{
-  //   star1.src='/icons/starfalse.png'
-  //   star1.className='starfalsev'
-  //   star2.src='/icons/starfalse.png'
-  //   star2.className='starfalsev'
-  //   star3.src='/icons/starfalse.png'
-  //   star3.className='starfalsev'
-  //   star4.src='/icons/starfalse.png'
-  //   star4.className='starfalsev'
-  //   star5.src='/icons/starfalse.png'
-  //   star5.className='starfalsev'
-  //   // console.log("pasaste por la estrella numero 1");
-  // });*/
 
-clear.addEventListener('click',()=>{
+$( "#searchName" ).autocomplete({
+  source: function( request, response ) {
+   // Fetch data
+   $.ajax({
+    url: "index.php?r=mobilidad/autocomplete-ajax",
+    type: 'post',
+    dataType: "json",
+    data: {
+     search: request.term
+    },
+    success: function( data ) {
+     response( data );
+     console.log(data);
+    }
+   });
+  },
+  select: function (event, ui) {
+   // Set selection
+
+   $('#searchName').val(ui.item.label); // display the selected text
+   $("#obra").val(ui.item.obra);
+   $("#telefono").val(ui.item.telefono);
+   $("#cargo").val(ui.item.cargo);
+   $("#email").val(ui.item.email);
+   // $('#selectuser_id').val(ui.item.value); // save selected id to input
+   return false;
+  }
+ });
+
+
+  var star1 = document.getElementById("star1");//obtenemos el elemento
+  var star2 = document.getElementById("star2");//obtenemos el elemento
+  var star3 = document.getElementById("star3");//obtenemos el elemento
+  var star4 = document.getElementById("star4");//obtenemos el elemento
+  var star5 = document.getElementById("star5");//obtenemos el elemento
+  var clear = document.getElementById("clear");//obtenemos el elemento
+
+
+let star = 0;//creamos una variable star para contene el numero de estrellas seleccionado
+
+clear.addEventListener('click',()=>{//creamos una funcion para limpiar las estrellas y dejarlas en false
   star1.src='/icons/starfalse.png'
   star1.className='starfalsev'
   star2.src='/icons/starfalse.png'
@@ -452,11 +415,12 @@ clear.addEventListener('click',()=>{
   star4.className='starfalsev'
   star5.src='/icons/starfalse.png'
   star5.className='starfalsev'
+   star = 0
 })
-  star1.addEventListener('click',()=>{
-    star1.src='/icons/startrue.png'
-    star1.className='starv'
-      star2.src='/icons/starfalse.png'
+  star1.addEventListener('click',()=>{//creamos una serie de funciones que muesran las estrella susando los eventos clicks sobre las mismas
+    star1.src='/icons/startrue.png'//añadimos la estrela que representa el true
+    star1.className='starv'//añadimos una clase que aumenta el tamaño de la misma
+      star2.src='/icons/starfalse.png'//añadimos el icono que representa el false
       star2.className='starfalsev'
       star3.src='/icons/starfalse.png'
       star3.className='starfalsev'
@@ -464,6 +428,7 @@ clear.addEventListener('click',()=>{
       star4.className='starfalsev'
       star5.src='/icons/starfalse.png'
       star5.className='starfalsev'
+       star = 1
   })
   star2.addEventListener("click",()=>{
     star1.src='/icons/startrue.png'
@@ -476,6 +441,7 @@ clear.addEventListener('click',()=>{
     star4.className='starfalsev'
     star5.src='/icons/starfalse.png'
     star5.className='starfalsev'
+     star = 2
   });
   star3.addEventListener("click",()=>{
     star1.src='/icons/startrue.png'
@@ -488,6 +454,7 @@ clear.addEventListener('click',()=>{
     star4.className='starfalsev'
     star5.src='/icons/starfalse.png'
     star5.className='starfalsev'
+    star = 3
   });
 
   star4.addEventListener("click",()=>{
@@ -501,6 +468,7 @@ clear.addEventListener('click',()=>{
     star4.className='starv'
     star5.src='/icons/starfalse.png'
     star5.className='starfalsev'
+    star = 4
   });
   star5.addEventListener("click",()=>{
     star1.src='/icons/startrue.png'
@@ -513,6 +481,7 @@ clear.addEventListener('click',()=>{
     star4.className='starv'
     star5.src='/icons/startrue.png'
     star5.className='starv'
+    star = 5
   });
 
 // $("#star1").hover(function(){
